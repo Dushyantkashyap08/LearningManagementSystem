@@ -110,13 +110,13 @@
             <!-- Tasks end-->
 
             <!-- Log out  goes here -->
-            <div class="list-inline-item logout"> 
-                {{-- <form method="POST" action="{{ route('logout') }}"> --}}
-                <form method="POST">
+            <div class="list-inline-item logout">
+              <form method="POST">
                   @csrf
-                    <a href="#" class="btn btn-primary" data-toggle="tooltip" >logout</a>
-                 </form> 
-            </div>
+                  <a href="#" class="btn btn-primary btn-logout" data-toggle="tooltip">Logout</a>
+              </form>
+          </div>
+          
             <!-- Log out ends here-->
 
           </div>

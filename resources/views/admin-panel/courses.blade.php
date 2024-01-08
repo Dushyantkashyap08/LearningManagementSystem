@@ -1,8 +1,8 @@
 <!--extending layouts.main here-->
 @extends('admin-panel.layouts.main')
 
-  <!--dashboard goes here-->
-  @section('dashboard')
+  <!--courses goes here-->
+  @section('courses')
     <div class="d-flex align-items-stretch">
       
       <!--sidebar goes here-->
@@ -15,7 +15,7 @@
           <!--page-header goes here-->
           <div class="page-header">
             <div class="container-fluid">
-              <h2 class="h5 no-margin-bottom">Dashboard</h2>
+              <h1 class="h1 no-margin-bottom">Courses</h1>
             </div>
           </div>
           <!--page-header ends here-->
@@ -23,79 +23,74 @@
           <!--no-padding section goes here-->
           <section class="no-padding-top no-padding-bottom">
             <div class="container-fluid">
-              <div class="row">
-                <!--new users-->
-                <div class="col-md-3 col-sm-6">
-                  <div class="statistic-block block">
-                    <div class="progress-details d-flex align-items-end justify-content-between">
-                      <div class="title">
-                        <div class="icon"><i class="icon-user-1"></i></div><strong>Total Users</strong>
-                      </div>
-                      {{-- <div class="number dashtext-1">{{$data}}</div> --}}
+                  <div class="container mt-5">
+                    <button class="h3 btn btn-primary" data-toggle="modal" data-target="#addCourseModal">Add Course</button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Course</th>
+                                    <th>Teacher's Name</th>
+                                    <th>Students Enrolled</th>
+                                    <th>Course Duration</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Introduction to Bootstrap</td>
+                                    <td>John Doe</td>
+                                    <td>50</td>
+                                    <td>4 weeks</td>
+                                    <td>
+                                        <button class="btn btn-primary">View Details</button>
+                                        <button class="btn btn-primary">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="progress progress-template">
-                      <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
-                    </div>
-                  </div>
                 </div>
-                <!--new user ends here -->
-
-                <!--new posts -->
-                <div class="col-md-3 col-sm-6">
-                  <div class="statistic-block block">
-                    <div class="progress-details d-flex align-items-end justify-content-between">
-                      <div class="title">
-                        <div class="icon"><i class="icon-contract"></i></div><strong>All Posts</strong>
-                      </div>
-                      {{-- <div class="number dashtext-2">{{$postCount}}</div> --}}
-                    </div>
-                    <div class="progress progress-template">
-                      <div role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-2"></div>
-                    </div>
-                  </div>
-                </div>
-                <!--new posts ends here -->
-
-                <!--new comments-->
-                <div class="col-md-3 col-sm-6" >
-                  <div class="statistic-block block" style="width:520px;"> 
-                    <div class="title">
-                      <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>Top Comments</strong>
-                    </div>
-                    <!-- Add your recent comments content here -->
-                      <ul>
-                        {{-- @foreach($comments as $commentData)
-                            <li>
-                              {{$commentData->comment}}
-                              <ul style="list-style-type:square">
-                                    <li>{{$commentData->post->title}}</li>
-                              </ul>
-                            </li>
-                        @endforeach --}}
-                    </ul>
-                  </div>
-                </div>
-                <!--new comments ends here -->
-
-              </div>
             </div>
             {{-- @endforeach --}}
           </section>
           <!--no-padding section ends here-->
 
-          <!--no-padding section goes here-->
-          <section class="no-padding-bottom">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-8" style="margin:auto;">
-                  <div class="line-cahrt block">
-                    <canvas id="lineCahrt"></canvas>
-                  </div>
+          <!-- Add Course Modal -->
+          <div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCourseModalLabel">Add New Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add your form fields here -->
+                        <!-- For example: -->
+                        <form>
+                            <div class="form-group">
+                                <label>Course Name</label>
+                                <input type="text" class="form-control" id="coursename"><br>
+                                <label>Teacher's Name</label>
+                                <input type="text" class="form-control" id="teachername"><br>
+                                <label>Students Enrolled</label>
+                                <input type="text" class="form-control" id="totalstudents"><br>
+                                <label>Course Duration</label>
+                                <input type="text" class="form-control" id="duration"><br>
+                            </div>
+                            <!-- Add other form fields as needed -->
+                            <button type="submit" class="btn btn-primary">Add Course</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
-          </section>
-          <!--no-padding section ends here-->
+          </div>
+
         </div>
     </div>
     <!--page-content ends here-->
@@ -103,13 +98,15 @@
 <!--section ends here-->
 
 @section('script')
-<script src="admin-template/vendor/chart.js/Chart.min.js"></script>
     <script src="admin-template/vendor/jquery/jquery.min.js"></script>
-    <script src="admin-template/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="admin-template/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="admin-template/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="admin-template/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="admin-template/js/front.js"></script>
-    <!-- JavaScript files ends here-->
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+    
+    <style>
+    .modal-open .modal-backdrop {
+      filter: blur(100px); /* Adjust the blur intensity as desired */
+      opacity: 0.8; /* Adjust the opacity as needed */
+    }
+      </style>
 @endsection
   

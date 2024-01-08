@@ -10,7 +10,7 @@
     </div>
     <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
     <ul class="list-unstyled">
-      <li class="nav-item active"><a href="{{ url('/home') }}"><i class="bi bi-house-door"></i>Dashboard</a></li>
+      <li class="nav-item active"><a href="{{ url('/admin-dashboard') }}"><i class="bi bi-house-door"></i>Dashboard</a></li>
       <li><a href="{{ url('course') }}"><i class="bi bi-book"></i>Courses</a></li>
       <li><a href="{{ url('class') }}"><i class="bi bi-building"></i>Classes</a></li>
       <li><a href="{{ url('students') }}"><i class="bi bi-person"></i>Students</a></li>

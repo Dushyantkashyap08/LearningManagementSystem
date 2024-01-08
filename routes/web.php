@@ -17,12 +17,9 @@ use App\Http\Controllers\TeacherViewController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //AdminViewController Routes here
-Route::get('/home',[AdminViewController::class,'viewDashboard']);
+Route::get('/admin-dashboard',[AdminViewController::class,'viewDashboard']);
 Route::get('/course',[AdminViewController::class,'viewCourses']);
 Route::get('/class',[AdminViewController::class,'viewClasses']);
 Route::get('/students',[AdminViewController::class,'viewStudents']);
@@ -31,16 +28,17 @@ Route::get('/chats',[AdminViewController::class,'viewChats']);
 Route::get('/report',[AdminViewController::class,'viewReport']);
 
 //TeacherViewController Routes here
-Route::get('/profile',[TeacherViewController::class,'viewProfile']);
+Route::get('/teacher-profile',[TeacherViewController::class,'viewProfile']);
 Route::get('/performance',[TeacherViewController::class,'viewPerformance']);
 Route::get('/lecture',[TeacherViewController::class,'viewLecture']);
 Route::get('/batch',[TeacherViewController::class,'viewBatch']);
 Route::get('/attendance',[TeacherViewController::class,'viewAttendance']);
 Route::get('/assignment',[TeacherViewController::class,'viewAssignment']);
-Route::get('/course',[TeacherViewController::class,'viewCourse']);
+Route::get('/create_course',[TeacherViewController::class,'viewCourse']);
 
 Route::get('/',function(){
-    return view('login');
+    return view('loginSignupPage');
 });
 
 Route::post('/signup',[LoginSignupController::class,'signup']);
+Route::post('/login',[LoginSignupController::class,'login']);
