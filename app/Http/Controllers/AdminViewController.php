@@ -13,29 +13,14 @@ class AdminViewController extends Controller
     {
         return view('admin-panel.dashboard');
     }
-    public function viewClasses()
-    {
-        return view('admin-panel.classes');
-    }
-    public function viewCourses()
-    {
-        return view('admin-panel.courses');
-    }
-    public function viewStudents()
-    {
-        return view('admin-panel.students');
-    }
-    public function viewTeachers()
-    {
-        return view('admin-panel.teachers');
-    }
+
     public function viewChat()
     {
         return view('admin-panel.chat');
     }
-    public function viewReports()
+    public function viewReport()
     {
-        return view('admin-panel.reports');
+        return view('admin-panel.report');
     }
 
    

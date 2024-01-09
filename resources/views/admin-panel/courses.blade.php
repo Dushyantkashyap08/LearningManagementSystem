@@ -20,6 +20,17 @@
           </div>
           <!--page-header ends here-->
 
+          @if(session()->has('success') || session()->has('error'))
+          <div class="alert {{ session()->has('success') ? 'alert-success' : 'alert-danger' }}">
+              @if(session()->has('success'))
+                  {{ session()->get('success') }}
+              @else
+                  {{ session()->get('error') }}
+              @endif
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+          </div>
+          @endif
+
           <!--no-padding section goes here-->
           <section class="no-padding-top no-padding-bottom">
             <div class="container-fluid">
@@ -38,18 +49,25 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              @foreach($data as $items)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Introduction to Bootstrap</td>
-                                    <td>John Doe</td>
-                                    <td>50</td>
-                                    <td>4 weeks</td>
+                                    <td>{{$items->id}}</td>
+                                    <td>{{$items->course}}</td>
+                                    <td>{{$items->teacher_name}}</td>
+                                    <td>{{$items->students_enrolled}}</td>
+                                    <td>{{$items->duration}}</td>
                                     <td>
                                         <button class="btn btn-primary">View Details</button>
                                         <button class="btn btn-primary">Delete</button>
                                     </td>
                                 </tr>
                                 <!-- Add more rows as needed -->
+                              @endforeach
+                              <tr>
+                                <td colspan="6">
+                                  {{$data->links('pagination::bootstrap-5')}}
+                                </td>
+                              </tr>
                             </tbody>
                         </table>
                     </div>
@@ -72,19 +90,20 @@
                     <div class="modal-body">
                         <!-- Add your form fields here -->
                         <!-- For example: -->
-                        <form>
+                        <form action="{{url('addcourse')}}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label>Course Name</label>
-                                <input type="text" class="form-control" id="coursename"><br>
+                                <input type="text" class="form-control" name="coursename"><br>
                                 <label>Teacher's Name</label>
-                                <input type="text" class="form-control" id="teachername"><br>
+                                <input type="text" class="form-control" name="teachername"><br>
                                 <label>Students Enrolled</label>
-                                <input type="text" class="form-control" id="totalstudents"><br>
+                                <input type="text" class="form-control" name="totalstudents"><br>
                                 <label>Course Duration</label>
-                                <input type="text" class="form-control" id="duration"><br>
+                                <input type="text" class="form-control" name="duration"><br>
                             </div>
                             <!-- Add other form fields as needed -->
-                            <button type="submit" class="btn btn-primary">Add Course</button>
+                            <button type="submit" value="addcourse" class="btn btn-primary">Add Course</button>
                         </form>
                     </div>
                 </div>
@@ -100,13 +119,11 @@
 @section('script')
     <script src="admin-template/vendor/jquery/jquery.min.js"></script>
     <script src="admin-template/vendor/bootstrap/js/bootstrap.min.js"></script>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
-    
     <style>
     .modal-open .modal-backdrop {
-      filter: blur(100px); /* Adjust the blur intensity as desired */
-      opacity: 0.8; /* Adjust the opacity as needed */
+      filter: blur(100px);
+      opacity: 0.8; 
     }
-      </style>
+    </style>
 @endsection
   

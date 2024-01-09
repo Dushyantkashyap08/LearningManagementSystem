@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('course');
             $table->string('teacher_name');
             $table->integer('students_enrolled');
-            $table->integer('duration');
+            $table->string('duration', 255)->nullable();
         });
     }
 

@@ -9,7 +9,7 @@
     @yield('students')
     @yield('teachers')
     @yield('chat')
-    @yield('reports')
+    @yield('report')
     @yield('script')
     <!--yield section ends here-->
     

@@ -27,7 +27,7 @@ class LoginSignupController extends Controller
 
             if ($user->role === 'super_admin') {
 
-                return redirect('/admin-profile');
+                return redirect('/admin-dashboard');
             } elseif ($user->role === 'teacher') {
 
                 return redirect('/teacher-profile');
